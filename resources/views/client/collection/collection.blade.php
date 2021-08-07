@@ -138,7 +138,7 @@
                             <div class="latest-product__slider owl-carousel">
                                 <div class="latest-prdouct__slider__item">
                                     @foreach($arr1 as $new_item1)
-                                    <a href="#" class="latest-product__item">
+                                    <a href="/product/<?=$new_item1->id?>" class="latest-product__item">
                                         <div class="latest-product__item__pic">
                                             <img src="{{URL::asset('/upload/products/'.$new_item1->image)}}" alt="" >
                                         </div>
@@ -151,7 +151,7 @@
                                 </div>
                                 <div class="latest-prdouct__slider__item">
                                     @foreach($arr2 as $new_item2)
-                                    <a href="#" class="latest-product__item">
+                                    <a href="/product/<?=$new_item2->id?>" class="latest-product__item">
                                         <div class="latest-product__item__pic">
                                             <img src="{{URL::asset('/upload/products/'.$new_item2->image)}}" alt="">
                                         </div>
@@ -188,7 +188,7 @@
                                     </div>
                                     <div class="product__discount__item__text">
 {{--                                        <span>Dried Fruit</span>--}}
-                                        <h5><a href="#">{{ $discount->name }}</a></h5>
+                                        <h5><a href="/product/<?=$discount->id?>">{{ $discount->name }}</a></h5>
                                         <div class="product__item__price">$30.00 ₫<span>{{ $discount->price }} ₫</span></div>
                                     </div>
                                 </div>

@@ -115,7 +115,7 @@
                             <div class="product__discount__item__text">
                                 {{--                                        <span>Dried Fruit</span>--}}
                                 <h5><a href="/product/<?=$discount->id?>">{{ $discount->name }}</a></h5>
-                                <div class="product__item__price">$30.00 ₫<span>{{ $discount->price }} ₫</span></div>
+                                <div class="product__item__price">30.00 ₫<span>{{ $discount->price }} ₫</span></div>
                             </div>
                         </div>
                     </div>

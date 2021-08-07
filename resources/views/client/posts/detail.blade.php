@@ -30,8 +30,8 @@
                 <div class="blog__sidebar">
                     <div class="blog__sidebar__search">
                         <form action="#">
-                            <input type="text" placeholder="Search...">
-                            <button type="submit"><span class="icon_search"></span></button>
+                            <input type="text" placeholder="Tìm kiếm...">
+                            <button type="submit"><i class="fa fa-search" aria-hidden="true"></i></button>
                         </form>
                     </div>
                     </div>
@@ -39,7 +39,7 @@
                     <h4>Bài viết mới</h4>
                     @foreach($blogs_other as $other)
                     <div class="blog__sidebar__recent pt-3">
-                        <a href="#" class="blog__sidebar__recent__item">
+                        <a href="/post/<?=$other->id?>" class="blog__sidebar__recent__item">
                             <div class="blog__sidebar__recent__item__pic">
                                 <img src="{{URL::asset('upload/blogs/'.$other->image)}}" alt="" width="150px">
                             </div>
@@ -162,37 +162,5 @@
 </section>
 <!-- Blog Details Section End -->
 
-<!-- Related Blog Section Begin -->
-{{--<section class="related-blog spad">--}}
-{{--    <div class="container">--}}
-{{--        <div class="row">--}}
-{{--            <div class="col-lg-12">--}}
-{{--                <div class="section-title related-blog-title">--}}
-{{--                    <h2>Bài Viết Khác</h2>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--        <div class="row">--}}
-{{--            @foreach($blogs_other as $other)--}}
-{{--            <div class="col-lg-4 col-md-4 col-sm-6">--}}
-{{--                <div class="blog__item">--}}
-{{--                    <div class="blog__item__pic">--}}
-{{--                        <img src="{{URL::asset('upload/blogs/'.$other->image)}}" alt="">--}}
-{{--                    </div>--}}
-{{--                    <div class="blog__item__text">--}}
-{{--                        <ul>--}}
-{{--                            <li><i class="fa fa-calendar-o"></i> May 4,2019</li>--}}
-{{--                            <li><i class="fa fa-comment-o"></i> 5</li>--}}
-{{--                        </ul>--}}
-{{--                        <h5><a href="#">{{ $other->title }}</a></h5>--}}
-{{--                        {!! Illuminate\Support\Str::limit($blog->content, 150, $end='...') !!}--}}
-{{--                    </div>--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--            @endforeach--}}
-{{--        </div>--}}
-{{--    </div>--}}
-{{--</section>--}}
-<!-- Related Blog Section End -->
 
 @stop

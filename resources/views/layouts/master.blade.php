@@ -64,7 +64,7 @@
     <meta name="keywords" content="Ogani, unica, creative, html">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link rel="icon" type="image/png" href="img/favicon.png"/>
+    <link rel="icon" type="image/png" href="{{URL::asset('img/favicon.png')}}"/>
     <title>@yield('title')</title>
 
     <!-- Google Font -->
@@ -198,16 +198,16 @@
                         @else
                             <div class="header__top__right__auth">
                                 <div class="header__top__right__language">
-                                    <div><img src="upload/users/<?=Auth::user()->avatar?>" width="20px" style="margin: 0; border-radius: 50%"> {{ Auth::user()->name }}</div>
+                                    <div><img src="{{URL::asset('/upload/users/'.Auth::user()->avatar)}}" width="20px" style="margin: 0; border-radius: 50%"> {{ Auth::user()->name }}</div>
                                     <i class="fa fa-angle-down angle-down-special-language"></i>
                                     <ul>
                                         @if((Auth::user()->role) == 1)
                                             <li>
-                                                <a href="/admin" class="dropdown-item">{{ __('Admin') }}</a>
+                                                <a href="/admin" class="dropdown-item">{{ __('Quản trị') }}</a>
                                             </li>
                                         @endif
                                         <li>
-                                            <a href="" class="dropdown-item">{{ __('Hồ sơ') }}</a>
+                                            <a href="/user/profile" class="dropdown-item">{{ __('Hồ sơ') }}</a>
                                         </li>
                                         <li>
                                             <a class="dropdown-item" href="{{ route('logout') }}"
@@ -277,30 +277,30 @@
                                 @endforeach
                                 <i class="fa fa-shopping-bag"></i>
                                 <span class="count-cart">{{$count }}</span>
-                                <ul style="width: 280px;left: -100px;margin: 0;" class="p-0">
+                                <ul style="width: 280px;left: -100px;margin: 0;background-color: antiquewhite;" class="p-0">
                                     <div class="row total-header-sectionn m-0">
 
-                                    @if(session('cart'))
-                                        @foreach(session('cart') as $id => $details)
-                                            <div class="cart-detail d-flex m-2 pb-2" style="border-bottom: 1px solid #eee">
-                                                <div class="col-lg-4 col-sm-4 col-4 cart-detail-img m-0 p-0 pr-2">
-                                                    <img src="{{URL::asset('/upload/products/'.$details['image'])}}" />
+                                        @if(session('cart'))
+                                            @foreach(session('cart') as $id => $details)
+                                                <div class="cart-detail d-flex m-2 pb-2" style="border-bottom: 1px solid #E53935;">
+                                                    <div class="col-lg-4 col-sm-4 col-4 cart-detail-img m-0 p-0 pr-2">
+                                                        <img src="{{URL::asset('/upload/products/'.$details['image'])}}" />
+                                                    </div>
+                                                    <div class="col-lg-8 col-sm-8 col-8 cart-detail-product m-0 p-0">
+                                                        <p class="m-0">{{ $details['name'] }}</p>
+                                                        <p class="m-0"> Giá: {{ $details['price'] }}</p>
+                                                        <p class="m-0"> SL:{{ $details['quantity'] }}</p>
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-8 col-sm-8 col-8 cart-detail-product m-0 p-0">
-                                                    <p class="m-0">{{ $details['name'] }}</p>
-                                                    <p class="m-0"> Giá: {{ $details['price'] }}</p>
-                                                    <p class="m-0"> SL:{{ $details['quantity'] }}</p>
-                                                </div>
-                                            </div>
-                                        @endforeach
-                                        <div class="col-lg-12 col-sm-12 col-12" >
-                                            <p>Tổng tiền: <span class="text-white">{{ $total }} ₫</span></p>
+                                            @endforeach
+                                            <div class="col-lg-12 col-sm-12 col-12" >
+                                                <p>Tổng tiền: <span class="text-danger font-weight-bold">{{ $total }} ₫</span></p>
 
-                                        </div>
-                                        <div class="view-cart">
-                                            <a href="/cart">Xem giỏ hàng</a>
-                                        </div>
-                                    @endif
+                                            </div>
+                                            <div class="view-cart">
+                                                <a href="/cart">Xem giỏ hàng</a>
+                                            </div>
+                                        @endif
                                     </div>
                                 </ul>
                             </div>
@@ -338,10 +338,10 @@
                     <div class="hero__search__form">
                         <form action="#">
                             <div class="hero__search__categories">
-                                All Categories
-                                <span class="arrow_carrot-down"></span>
+                                Danh mục sản phẩm
+                                <i class="fa fa-angle-down angle-down-special"></i>
                             </div>
-                            <input type="text" placeholder="What do yo u need?">
+                            <input type="text" placeholder="Bạn cần tìm gì?">
                             <button type="submit" class="site-btn">SEARCH</button>
                         </form>
                     </div>
@@ -350,7 +350,7 @@
                             <i class="fa fa-phone"></i>
                         </div>
                         <div class="hero__search__phone__text">
-                            <h5>+65 11.188.888</h5>
+                            <h5>+84 888 222 999</h5>
                             <span>support 24/7 time</span>
                         </div>
                     </div>
@@ -374,7 +374,7 @@
                     </div>
                     <ul>
                         <li><b><i class="fa fa-map-marker"></i> Địa chỉ:</b> Số 288 Đường Nguyễn Văn Linh, Hưng Lợi, Ninh Kiều, Cần Thơ</li>
-                        <li><b><i class="fa fa-phone"></i> Số điện thoại:</b> +84 918 720 134</li>
+                        <li><b><i class="fa fa-phone"></i> Số điện thoại:</b> +84 888 222 999</li>
                         <li><b><i class="fa fa-envelope"></i> Email:</b> graphicstablet@gmail.com</li>
                     </ul>
                 </div>

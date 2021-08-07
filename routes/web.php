@@ -13,110 +13,8 @@ use App\Models\Category;
 |
 */
 
-//Route::get('/', function () {
-//    return view('welcome');
-//});
-//
-
-
-//Route::get('/login', 'App\Http\Controllers\Auth\LoginController@index');
-//Route::get('/validation', 'App\Http\Controllers\ValidationController@showForm');
-//Route::post('/validation', 'App\Http\Controllers\ValidationController@validateForm');
-//
-//Route::get('/custom-validation', 'App\Http\Controllers\CustomValidationController@getCustomValidation');
-//Route::post('/custom-validation', 'App\Http\Controllers\CustomValidationController@postCustomValidation');
-//
-//Route::get('/register', 'App\Http\Controllers\RegisterController@showForm');
-//Route::post('/register', 'App\Http\Controllers\RegisterController@validateForm');
-
-//Route::get('/insert', function (){
-//    App\Models\Category::create(array('name'=>'Paint'));
-//    return 'Mai đã tạo thành công!';
-//});
-
-//Route::get('/read', function (){
-//   $categoriy = new App\Models\Category();
-//   $data = $categoriy->all(array('name', 'id'));
-//    echo '<h4>PC00654 - Mai</h4>';
-//   foreach ($data as $list){
-//       echo $list->id.' - '.$list->name.' '.'<br>';
-//   }
-//});
-
-//Route::get('/update', function (){
-//    $category = Category::find(4);
-//    $category->name = 'HEAVY METAL';
-//    $category->save();
-//    $data = $category->all(array('name', 'id'));
-//    foreach ($data as $list){
-//        echo $list->id.' - '.$list->name.' '.'<br>';
-//    }
-//});
-//
-//Route::get('/delete', function (){
-//    $category = Category::find(4);
-//    $category->delete();
-//    $data = $category->all(array('name', 'id'));
-//    foreach ($data as $list){
-//        echo $list->id.' - '.$list->name.' '.'<br>';
-//    }
-//});
-//
-//Route::get('/soft-delete', function (){
-//    $category = Category::find(7);
-//    $category->delete();
-//    $data = $category->all(array('name', 'id'));
-//    echo '<h4>PC00654 - Mai</h4>';
-//    foreach ($data as $list){
-//        echo $list->id.' - '.$list->name.' '.'<br>';
-//    }
-//});
-//
-//Route::get('/read-all', function (){
-//    $category = new App\Models\Category();
-//    $data = $category->withTrashed()->get();
-//    echo '<h4>PC00654 - Mai</h4>';
-//    foreach ($data as $list){
-//        echo $list->id.' - '.$list->name.' '.'<br>';
-//    }
-//});
-//
-//Route::get('/read-only', function (){
-//    $category = new App\Models\Category();
-//    $data = $category->onlyTrashed()->get();
-//    echo '<h4>PC00654 - Mai</h4>';
-//    foreach ($data as $list){
-//        echo $list->id.' - '.$list->name.' '.'<br>';
-//    }
-//});
-//
-//Route::get('/restore', function (){
-//    $category = new App\Models\Product();
-//    $category->withTrashed()->where('id', 2)->restore();
-//    $data = $category->all(array('name', 'id'));
-//    echo '<h4>PC00654 - Mai</h4>';
-//    foreach ($data as $list){
-//        echo $list->id.' - '.$list->name.' '.'<br>';
-//    }
-//});
-//
-//Route::get('/destroy', function (){
-//    $category = new App\Models\Category();
-//    $category->withTrashed()->where('id', 7)->forceDelete();
-//    $data = $category->all(array('name', 'id'));
-//    echo '<h4>PC00654 - Mai</h4>';
-//    foreach ($data as $list){
-//        echo $list->id.' - '.$list->name.' '.'<br>';
-//    }
-//});
-//Route::get('/profile', function (){
-//})->middleware('auth.basic');
-//Route::post('/logintest', 'TestController@check');
-
 
 Auth::routes();
-
-//Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
 Route::get('/', 'App\Http\Controllers\HomeController@index');
 Route::get('/home', 'App\Http\Controllers\HomeController@index');
@@ -132,6 +30,9 @@ Route::delete('/remove-from-cart', 'App\Http\Controllers\Client\CartController@r
 Route::get('/checkout', 'App\Http\Controllers\Client\CartController@checkout');
 Route::get('/contact', 'App\Http\Controllers\Client\ContactController@index');
 Route::post('/payment', 'App\Http\Controllers\Client\CartController@create');
+Route::get('/user/profile/{id}', 'App\Http\Controllers\Client\AccountController@index');
+Route::get('/user/profile/edit/{id}', 'App\Http\Controllers\Client\AccountController@edit');
+Route::get('/user/profile/change-pass/{id}', 'App\Http\Controllers\Client\AccountController@change');
 
 // ROUTE DASHBOARD
 Route::group(['middleware' => ['admin']], function () {
