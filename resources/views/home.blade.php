@@ -52,18 +52,32 @@
             </div>
             <div class="row featured__filter">
                 @foreach($product_outstanding as $outstanding)
-                <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                <div class="col-lg-3 col-md-4 col-sm-6">
                     <div class="featured__item">
                         <div class="featured__item__pic set-bg" data-setbg="{{URL::asset('/upload/products/'.$outstanding->image)}}">
+                            @if($outstanding->discount > 0)
+                                <div class="product__discount__percent">-{{ $outstanding->discount }}%</div>
+                            @endif
                             <ul class="featured__item__pic__hover">
-                                <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                @if(Auth::user())
+                                    <li><a href="/wishlist/<?=$outstanding->id?>"><i class="fa fa-heart"></i></a></li>
+                                @else
+                                    <li><a data-toggle="modal" data-target="#myModal"><i class="fa fa-heart"></i></a></li>
+                                @endif
                                 <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                <li><a href="/add-to-cart/<?=$outstanding->id?>"><i class="fa fa-shopping-cart"></i></a></li>
                             </ul>
                         </div>
                         <div class="featured__item__text">
                             <h6><a href="/product/<?=$outstanding->id?>">{{ $outstanding->name }}</a></h6>
-                            <h5>{{ number_format($outstanding->price, 3, ".", "") }} ₫</h5>
+                            @if($outstanding->discount)
+                                <?php
+                                $discount_price = $outstanding->price - ($outstanding->price * ($outstanding->discount/100));
+                                ?>
+                                <h5 class="product__item__price">{{ number_format($discount_price,3,".",".") }} ₫<span class="pl-2" style="text-decoration: line-through;color: #b2b2b2;font-weight: normal;">{{ number_format($outstanding->price,3,".",".") }} ₫</span></h5>
+                            @else
+                                <h5>{{ number_format($outstanding->price,3,".",".") }} ₫</h5>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -107,15 +121,22 @@
                                  data-setbg="{{URL::asset('/upload/products/'.$discount->image)}}">
                                 <div class="product__discount__percent">-{{ $discount->discount }}%</div>
                                 <ul class="product__item__pic__hover">
-                                    <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                                    @if(Auth::user())
+                                        <li><a href="/wishlist/<?=$discount->id?>"><i class="fa fa-heart"></i></a></li>
+                                    @else
+                                        <li><a data-toggle="modal" data-target="#myModal"><i class="fa fa-heart"></i></a></li>
+                                    @endif
                                     <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                                    <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                                    <li><a href="/add-to-cart/<?=$discount->id?>"><i class="fa fa-shopping-cart"></i></a></li>
                                 </ul>
                             </div>
                             <div class="product__discount__item__text">
                                 {{--                                        <span>Dried Fruit</span>--}}
                                 <h5><a href="/product/<?=$discount->id?>">{{ $discount->name }}</a></h5>
-                                <div class="product__item__price">30.00 ₫<span>{{ $discount->price }} ₫</span></div>
+                                <?php
+                                    $discount_price = $discount->price - ($discount->price * ($discount->discount/100));
+                                ?>
+                                <div class="product__item__price">{{ number_format($discount_price,3,".",".") }} ₫<span>{{ number_format($discount->price,3,".",".") }} ₫</span></div>
                             </div>
                         </div>
                     </div>

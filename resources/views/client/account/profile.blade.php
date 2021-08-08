@@ -58,28 +58,22 @@
                         <h1 class="mt-4 pl-2" style="border-left: 5px solid #E53935;">THÔNG TIN TÀI KHOẢN</h1>
                         <div class="row">
                             <div class="bio-row">
-                                <p><span class="font-weight-bold">Họ </span>: </p>
+                                <p><span class="font-weight-bold">Họ và tên</span>:  <span class="font-italic">{{ $user->name }}</span></p>
                             </div>
                             <div class="bio-row">
-                                <p><span class="font-weight-bold">Tên </span>: </p>
-                            </div>
-                            <div class="bio-row">
-                                <p><span class="font-weight-bold">Username</span>:  <span class="font-italic">{{ $user->username }}</span> </p>
-                            </div>
-                            <div class="bio-row">
-                                <p><span class="font-weight-bold">Ngày sinh </span>: </p>
+                                <p><span class="font-weight-bold">Username </span>: <span class="font-italic">{{ $user->username }}</span></p>
                             </div>
                             <div class="bio-row">
                                 <p><span class="font-weight-bold">Email </span>:  <span class="font-italic">{{ $user->email }}</span> </p>
                             </div>
                             <div class="bio-row">
-                                <p><span class="font-weight-bold">Số điện thoại </span>: </p>
+                                <p><span class="font-weight-bold">Số điện thoại </span>: <span class="font-italic">{{ $user->phone }}</span></p>
                             </div>
                             <div class="bio-row">
-                                <p><span class="font-weight-bold">Địa chỉ </span>: </p>
+                                <p><span class="font-weight-bold">Địa chỉ </span>: <span class="font-italic">{{ $user->address }}</span></p>
                             </div>
                             <div class="bio-row">
-                                <p><span class="font-weight-bold">Ngày tạo </span>: </p>
+                                <p><span class="font-weight-bold">Ngày tạo </span>: <span class="font-italic">{{ $user->created_at }}</span></p>
                             </div>
                         </div>
                     </div>

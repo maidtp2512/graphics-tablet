@@ -849,7 +849,7 @@ ol {
 	margin-bottom: 50px;
 }
 
-.featured__item:hover .featured__item__pic .featured__item__pic__hover {
+.featured__item:hover .featured__item__pic__hover {
 	bottom: 20px;
 }
 
@@ -1285,7 +1285,7 @@ ol {
     background-color: antiquewhite;
 }
 
-.product__discount__item__pic .product__discount__percent {
+.product__discount__percent {
 	height: 45px;
 	width: 45px;
 	background: #dd2222;

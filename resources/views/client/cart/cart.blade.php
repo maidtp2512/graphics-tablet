@@ -51,11 +51,11 @@
                                                     <h4 class="nomargin" style="line-height: 100px;">{{ $details['name'] }}</h4>
                                             </div>
                                         </td>
-                                        <td data-th="Price">{{ $details['price'] }}</td>
+                                        <td data-th="Price">{{ number_format($details['price'],3,".",".") }} ₫</td>
                                         <td data-th="Quantity">
                                             <input type="number" min="1" value="{{ $details['quantity'] }}" class="form-control quantity update-cart" style="width: 60px;margin: 0 auto;"/>
                                         </td>
-                                        <td data-th="Subtotal" class="text-center">{{ $details['price'] * $details['quantity'] }}</td>
+                                        <td data-th="Subtotal" class="text-center">{{ number_format($details['price'] * $details['quantity'],3,".",".") }} ₫</td>
                                         <td class="actions" data-th="">
                                             <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-close"></i></button>
                                         </td>
@@ -96,8 +96,8 @@
                             @endforeach
                         <ul>
                             <li>Tổng sản phẩm <span>{{ $count }}</span></li>
-                            <li>Phí giao hàng <span>0đ</span></li>
-                            <li>Tổng <span>{{ $total }}đ</span></li>
+                            <li>Phí giao hàng <span>0 đ</span></li>
+                            <li>Tổng <span>{{ number_format($total,3,".",".") }} đ</span></li>
                         </ul>
                         @endif
                         <a href="/checkout" class="primary-btn">CHECKOUT</a>

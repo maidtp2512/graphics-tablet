@@ -117,12 +117,12 @@
                                         @php $total += $details['price'] * $details['quantity'] @endphp
                                         @php $count += $details['quantity'] @endphp
 
-                                    <li><span>{!! \Illuminate\Support\Str::limit($details['name'], $limit = 20, $end = '...')!!}</span> <span>{{ $details['price'] }}đ</span></li>
+                                    <li><span>{!! \Illuminate\Support\Str::limit($details['name'], $limit = 20, $end = '...')!!}</span> <span>{{ number_format($details['price'],3,".",".") }} đ</span></li>
                                     @endforeach
 
                                 </ul>
                                 <div class="checkout__order__subtotal">Phí giao hàng <span>0</span></div>
-                                <div class="checkout__order__total">Tổng <span>{{ $total }}đ</span></div>
+                                <div class="checkout__order__total">Tổng <span>{{ number_format($total,3,".",".") }} đ</span></div>
                                     <button type="submit" class="site-btn">ĐẶT HÀNG</button>
                                 @endif
                             </div>

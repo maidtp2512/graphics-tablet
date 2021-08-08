@@ -58,14 +58,15 @@
                             <h1 class="mt-4 pl-2" style="border-left: 5px solid #E53935;">CẬP NHẬT TÀI KHOẢN</h1>
                             <div class="contact-form pt-0 pb-2">
                                 <div class="container">
-                                    <form action="#" class="form-update-account">
+                                    <form action="/user/profile/update-profile/<?=$user->id?>" class="form-update-account" method="post">
+                                        {{ csrf_field() }}
                                         <div class="row">
                                             <div class="col-lg-6 col-md-6 update-account-item">
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon1">Họ</span>
+                                                        <span class="input-group-text" id="basic-addon1">@</span>
                                                     </div>
-                                                    <input type="text" class="form-control"  value="Họ" name="last_name"  aria-describedby="basic-addon1">
+                                                    <input type="text" class="form-control" value="<?=$user->username?>" aria-describedby="basic-addon1" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 update-account-item">
@@ -73,15 +74,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1">Tên</span>
                                                     </div>
-                                                    <input type="text" class="form-control"  value="Tên"  name="first_name" aria-describedby="basic-addon1">
-                                                </div>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6 update-account-item">
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon1">@</span>
-                                                    </div>
-                                                    <input type="text" class="form-control" value="<?=$user->username?>" name="username" aria-describedby="basic-addon1">
+                                                    <input type="text" class="form-control"  value="<?=$user->name?>"  name="name" aria-describedby="basic-addon1">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 update-account-item">
@@ -89,7 +82,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-envelope" aria-hidden="true"></i></span>
                                                     </div>
-                                                    <input type="text" class="form-control" value="<?=$user->email?>" name="email" aria-describedby="basic-addon1">
+                                                    <input type="text" class="form-control" value="<?=$user->email?>" aria-describedby="basic-addon1" readonly>
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 update-account-item">
@@ -97,7 +90,15 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1"><i class="fa fa-phone" aria-hidden="true"></i></span>
                                                     </div>
-                                                    <input type="text" class="form-control" value="Số điện thoại" name="phone" aria-describedby="basic-addon1">
+                                                    <input type="text" class="form-control" value="<?=$user->phone?>" name="phone" aria-describedby="basic-addon1">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 update-account-item">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1"><i class="fa fa-map-marker" aria-hidden="true"></i></span>
+                                                    </div>
+                                                    <input type="text" class="form-control" value="<?=$user->address?>" name="address" aria-describedby="basic-addon1">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 update-account-item">

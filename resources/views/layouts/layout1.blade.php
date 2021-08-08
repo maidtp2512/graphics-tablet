@@ -54,8 +54,13 @@
 {{--        </div>--}}
 {{--    </body>--}}
 {{--</html>--}}
-
-    <!DOCTYPE html>
+<?php
+    $directoryURI = $_SERVER['REQUEST_URI'];
+    $path = parse_url($directoryURI, PHP_URL_PATH);
+    $components = explode('/', $path);
+    $first_part = $components[1];
+?>
+<!DOCTYPE html>
 <html lang="zxx">
 
 <head>
@@ -92,7 +97,40 @@
 <div id="preloder">
     <div class="loader"></div>
 </div>
-
+@if (!empty($message))
+    <div class="modal fade show" id="myModal1" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="border:none !important;">
+                <div class="modal-header" style="background-color: #E53935;">
+                    <h5 class="modal-title text-white" id="exampleModalLongTitle">Thông báo</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-success font-weight-bold">{{ $message }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
+@if (session('status'))
+    <div class="modal fade show" id="myModal2" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content" style="border:none !important;">
+                <div class="modal-header" style="background-color: #E53935;">
+                    <h5 class="modal-title text-white" id="exampleModalLongTitle">Thông báo</h5>
+                    <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p class="text-success font-weight-bold">{{ session('status') }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+@endif
 <!-- Humberger Begin -->
 <div class="humberger__menu__overlay"></div>
 <div class="humberger__menu__wrapper">
@@ -121,11 +159,11 @@
 {{--    </div>--}}
     <nav class="humberger__menu__nav mobile-menu">
         <ul>
-            <li class="active"><a href="/">Trang chủ</a></li>
-            <li><a href="/collection">Bộ sưu tập</a></li>
-            <li><a href="/about">Giới thiệu</a></li>
-            <li><a href="/posts">Bài Viết</a></li>
-            <li><a href="/contact">Liên hệ</a></li>
+            <li class="<?=(($first_part == '') ? 'active' : '')?>"><a href="/">Trang chủ</a></li>
+            <li class="<?=(($first_part == 'collection') ? 'active' : '')?>"><a href="/collection">Bộ sưu tập</a></li>
+            <li class="<?=(($first_part == 'about') ? 'active' : '')?>"><a href="/about">Giới thiệu</a></li>
+            <li class="<?=(($first_part == 'posts') ? 'active' : '')?>"><a href="/posts">Bài Viết</a></li>
+            <li class="<?=(($first_part == 'contact') ? 'active' : '')?>"><a href="/contact">Liên hệ</a></li>
         </ul>
     </nav>
     <div id="mobile-menu-wrap"></div>
@@ -255,18 +293,22 @@
             <div class="col-lg-6">
                 <nav class="header__menu">
                     <ul>
-                        <li class="active"><a href="/">Trang chủ</a></li>
-                        <li><a href="/collection">Bộ sưu tập</a></li>
-                        <li><a href="/about">Giới thiệu</a></li>
-                        <li><a href="/posts">Bài viết</a></li>
-                        <li><a href="/contact">Liên hệ</a></li>
+                        <li class="<?=(($first_part == '') ? 'active' : '')?>"><a href="/">Trang chủ</a></li>
+                        <li class="<?=(($first_part == 'collection') ? 'active' : '')?>"><a href="/collection">Bộ sưu tập</a></li>
+                        <li class="<?=(($first_part == 'about') ? 'active' : '')?>"><a href="/about">Giới thiệu</a></li>
+                        <li class="<?=(($first_part == 'posts') ? 'active' : '')?>"><a href="/posts">Bài Viết</a></li>
+                        <li class="<?=(($first_part == 'contact') ? 'active' : '')?>"><a href="/contact">Liên hệ</a></li>
                     </ul>
                 </nav>
             </div>
             <div class="col-lg-3">
                 <div class="header__cart">
                     <ul style="margin: 0;">
-                        <li><a href="#"><i class="fa fa-heart"></i> <span class="count-cart">1</span></a></li>
+                        @if(Auth::user())
+                        <li><a href="/wishlist"><i class="fa fa-heart"></i> <span class="count-cart">0</span></a></li>
+                        @else
+                            <li><a data-toggle="modal" data-target="#myModal"><i class="fa fa-heart"></i> <span class="count-cart">0</span></a></li>
+                        @endif
                         <li>
                             <div class="header__top__right__language header__top__right__cart">
                                 @php $total = 0 @endphp
@@ -288,13 +330,13 @@
                                                     </div>
                                                     <div class="col-lg-8 col-sm-8 col-8 cart-detail-product m-0 p-0">
                                                         <p class="m-0">{{ $details['name'] }}</p>
-                                                        <p class="m-0"> Giá: {{ $details['price'] }}</p>
+                                                        <p class="m-0"> Giá: {{ number_format($details['price'],3,".",".") }} ₫</p>
                                                         <p class="m-0"> SL:{{ $details['quantity'] }}</p>
                                                     </div>
                                                 </div>
                                             @endforeach
                                             <div class="col-lg-12 col-sm-12 col-12" >
-                                                <p>Tổng tiền: <span class="text-danger font-weight-bold">{{ $total }} ₫</span></p>
+                                                <p>Tổng tiền: <span class="text-danger font-weight-bold">{{ number_format($total,3,".",".") }} ₫</span></p>
 
                                             </div>
                                             <div class="view-cart">
@@ -427,6 +469,21 @@
         </div>
     </div>
 </footer>
+<div class="modal fade show" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content" style="border:none !important;">
+            <div class="modal-header" style="background-color: #E53935;">
+                <h5 class="modal-title text-white" id="exampleModalLongTitle">Thông báo</h5>
+                <button type="button" class="close text-white" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p class="text-success font-weight-bold text-left">Đăng nhập để sử dụng chức năng này!</p>
+            </div>
+        </div>
+    </div>
+</div>
 <!-- Footer Section End -->
 
 <!-- Js Plugins -->
@@ -439,7 +496,12 @@
 <script src="{{ asset('js/owl.carousel.min.js') }}"></script>
 <script src="{{ asset('js/main.js') }}"></script>
 
-
+<script>
+    $(window).on('load', function() {
+        $('#myModal1').modal('show');
+        $('#myModal2').modal('show');
+    });
+</script>
 
 </body>
 

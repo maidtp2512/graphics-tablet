@@ -86,10 +86,8 @@
                     <i class="fa fa-check adminpro-checked-pro admin-check-pro" aria-hidden="true"></i>
                 </div>
                     <p>{{ session('status') }}</p>
-
             </div>
         </div>
-
     @endif
 
     <div class="left-sidebar-pro">

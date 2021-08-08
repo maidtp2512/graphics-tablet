@@ -33,6 +33,17 @@ Route::post('/payment', 'App\Http\Controllers\Client\CartController@create');
 Route::get('/user/profile/{id}', 'App\Http\Controllers\Client\AccountController@index');
 Route::get('/user/profile/edit/{id}', 'App\Http\Controllers\Client\AccountController@edit');
 Route::get('/user/profile/change-pass/{id}', 'App\Http\Controllers\Client\AccountController@change');
+Route::post('/user/profile/update-pass/{id}', 'App\Http\Controllers\Client\AccountController@changePass');
+
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/wishlist', 'App\Http\Controllers\Client\CartController@wishlist');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/wishlist-remove/{id}', 'App\Http\Controllers\Client\CartController@wishlistRemove');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/wishlist/{id}', 'App\Http\Controllers\Client\CartController@addWishlist');
+});
 
 // ROUTE DASHBOARD
 Route::group(['middleware' => ['admin']], function () {
@@ -60,24 +71,62 @@ Route::group(['middleware' => ['admin']], function () {
 });
 
 // ROUTE ADMIN BLOGS
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin/blogs', 'App\Http\Controllers\Admin\BlogsController@index');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin/blogs/create', 'App\Http\Controllers\Admin\BlogsController@create');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::post('/admin/blogs/insert', 'App\Http\Controllers\Admin\BlogsController@insert');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin/blogs/edit/{id}', 'App\Http\Controllers\Admin\BlogsController@edit');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::post('/admin/blogs/update/{id}', 'App\Http\Controllers\Admin\BlogsController@update');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::post('/admin/blogs/delete', 'App\Http\Controllers\Admin\BlogsController@delete');
+});
 
-Route::get('/admin/blogs', 'App\Http\Controllers\Admin\BlogsController@index');
-Route::get('/admin/blogs/create', 'App\Http\Controllers\Admin\BlogsController@create');
-Route::post('/admin/blogs/insert', 'App\Http\Controllers\Admin\BlogsController@insert');
-Route::get('/admin/blogs/edit/{id}', 'App\Http\Controllers\Admin\BlogsController@edit');
-Route::post('/admin/blogs/update/{id}', 'App\Http\Controllers\Admin\BlogsController@update');
-Route::post('/admin/blogs/delete', 'App\Http\Controllers\Admin\BlogsController@delete');
+// ROUTE ADMIN USERS
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin/users', 'App\Http\Controllers\Admin\UsersController@index');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin/users/add', 'App\Http\Controllers\Admin\UsersController@add');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::post('/admin/users/insert', 'App\Http\Controllers\Admin\UsersController@insert');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin/users/edit/{id}', 'App\Http\Controllers\Admin\UsersController@edit');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::post('/admin/users/update/{id}', 'App\Http\Controllers\Admin\UsersController@update');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::post('/admin/users/delete', 'App\Http\Controllers\Admin\UsersController@delete');
+});
 
-Route::get('/admin/users', 'App\Http\Controllers\Admin\UsersController@index');
-Route::get('/admin/users/add', 'App\Http\Controllers\Admin\UsersController@add');
-Route::post('/admin/users/insert', 'App\Http\Controllers\Admin\UsersController@insert');
-Route::get('/admin/users/edit/{id}', 'App\Http\Controllers\Admin\UsersController@edit');
-Route::post('/admin/users/update/{id}', 'App\Http\Controllers\Admin\UsersController@update');
-Route::post('/admin/users/delete', 'App\Http\Controllers\Admin\UsersController@delete');
+// ROUTE ADMIN PRODUCTS
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin/products', 'App\Http\Controllers\Admin\ProductsController@index');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin/products/add', 'App\Http\Controllers\Admin\ProductsController@add');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::post('/admin/products/insert', 'App\Http\Controllers\Admin\ProductsController@insert');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin/products/edit/{id}', 'App\Http\Controllers\Admin\ProductsController@edit');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::post('/admin/products/update/{id}', 'App\Http\Controllers\Admin\ProductsController@update');
+});
+Route::group(['middleware' => ['admin']], function () {
+    Route::post('/admin/products/delete', 'App\Http\Controllers\Admin\ProductsController@delete');
+});
 
-Route::get('/admin/products', 'App\Http\Controllers\Admin\ProductsController@index');
-Route::get('/admin/products/add', 'App\Http\Controllers\Admin\ProductsController@add');
-Route::post('/admin/products/insert', 'App\Http\Controllers\Admin\ProductsController@insert');
-Route::post('/admin/products/delete', 'App\Http\Controllers\Admin\ProductsController@delete');
-Route::get('/admin/products/edit/{id}', 'App\Http\Controllers\Admin\ProductsController@edit');
-Route::post('/admin/products/update/{id}', 'App\Http\Controllers\Admin\ProductsController@update');

@@ -2,6 +2,7 @@
 @section('title', 'Graphics Tablet - Home')
 
 @section('client')
+
     <!-- Breadcrumb Section Begin -->
     <section class="breadcrumb-section set-bg" data-setbg="{{URL::asset('img/breadcrumb.jpg')}}">
         <div class="container">
@@ -21,6 +22,7 @@
     </section>
     <!-- Breadcrumb Section End -->
     @if(Auth::user())
+
         <div class="container bootstrap snippets bootdey mb-5">
             <div class="row">
                 <div class="profile-nav col-md-3">
@@ -55,25 +57,26 @@
                             {{ $user->name }} thân mến. Mình chỉ muốn cảm ơn bạn bởi bạn là khách hàng quan trọng của chúng tôi. Nếu bạn có bất cứ điều gì hãy cho chúng tôi biết, chúng tôi sẽ cố gắng để đáp ứng nhu cầu của bạn.
                         </div>
                         <div class="panel-body bio-graph-info pl-3 pr-3">
-                            <h1 class="mt-4 pl-2" style="border-left: 5px solid #E53935;">CẬP NHẬT TÀI KHOẢN</h1>
+                            <h1 class="mt-4 pl-2" style="border-left: 5px solid #E53935;">ĐỔI MẬT KHẨU</h1>
                             <div class="contact-form pt-0 pb-2">
                                 <div class="container">
-                                    <form action="#" class="form-update-account">
+                                    <form action="/user/profile/update-pass/<?=$id?>" method="post" class="form-update-account" >
+                                        {{ csrf_field() }}
                                         <div class="row">
-                                            <div class="col-lg-6 col-md-6 update-account-item">
-                                                <div class="input-group mb-3">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text" id="basic-addon1">Username</span>
-                                                    </div>
-                                                    <input type="text" class="form-control" name="username" aria-describedby="basic-addon1">
-                                                </div>
-                                            </div>
                                             <div class="col-lg-6 col-md-6 update-account-item">
                                                 <div class="input-group mb-3">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1">Email</span>
                                                     </div>
                                                     <input type="text" class="form-control" name="email" aria-describedby="basic-addon1">
+                                                </div>
+                                            </div>
+                                            <div class="col-lg-6 col-md-6 update-account-item">
+                                                <div class="input-group mb-3">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text" id="basic-addon1">Mật khẩu cũ</span>
+                                                    </div>
+                                                    <input type="password" class="form-control" name="old_pass" aria-describedby="basic-addon1">
                                                 </div>
                                             </div>
                                             <div class="col-lg-6 col-md-6 update-account-item">
@@ -89,7 +92,7 @@
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text" id="basic-addon1">Xác nhận mật khẩu</span>
                                                     </div>
-                                                    <input type="text" class="form-control" name="c_pass" aria-describedby="basic-addon1">
+                                                    <input type="password" class="form-control" name="c_pass" aria-describedby="basic-addon1">
                                                 </div>
                                             </div>
                                             <div class="col-lg-12 pt-3">

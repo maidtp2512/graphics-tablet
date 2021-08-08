@@ -55,17 +55,27 @@
                         <i class="fa fa-star-half-o"></i>
                         <span>(18 reviews)</span>
                     </div>
-                    <div class="product__details__price">{{ $product->price }}</div>
+
+                    @if($product->discount)
+                        <?php
+                        $discount_price = $product->price - ($product->price * ($product->discount/100));
+                        ?>
+                        <span class="product__details__price">{{ number_format($discount_price,3,".",".") }} ₫</span>
+                        <span class="pl-3" style="text-decoration: line-through;color: #b2b2b2;font-size: 20px">{{ number_format($product->price,3,".",".") }} ₫</span>
+                    @else
+                        <span class="product__details__price">{{ number_format($product->price,3,".",".") }} ₫</span>
+                    @endif
+
                     <p>{{ $product->short_description }}</p>
-                    <div class="product__details__quantity">
-                        <div class="quantity">
-                            <div class="pro-qty">
-                                <input type="text" value="1">
-                            </div>
-                        </div>
-                    </div>
-                    <a href="#" class="primary-btn">ADD TO CARD</a>
-                    <a href="#" class="heart-icon"><span class="icon_heart_alt"></span></a>
+{{--                    <div class="product__details__quantity">--}}
+{{--                        <div class="quantity">--}}
+{{--                            <div class="pro-qty">--}}
+{{--                                <input type="text" value="1">--}}
+{{--                            </div>--}}
+{{--                        </div>--}}
+{{--                    </div>--}}
+                    <a href="/add-to-cart/<?=$product->id?>" class="primary-btn">THÊM VÀO GIỎ HÀNG</a>
+                    <a href="#" class="heart-icon"><i class="fa fa-heart-o" aria-hidden="true"></i></a>
                     <ul>
                         <li><b>Trạng thái: </b> <span><?php if($product->availability == 0){echo 'Hết hàng';} else{echo 'Còn hàng';}?></span></li>
 {{--                        <li><b>Shipping</b> <span>01 day shipping. <samp>Free pickup today</samp></span></li>--}}
@@ -175,14 +185,26 @@
                 <div class="product__item">
                     <div class="product__item__pic set-bg" data-setbg="{{URL::asset('/upload/products/'.$rel->image)}}">
                         <ul class="product__item__pic__hover">
-                            <li><a href="#"><i class="fa fa-heart"></i></a></li>
+                            @if(Auth::user())
+                                <li><a href="/wishlist/<?=$rel->id?>"><i class="fa fa-heart"></i></a></li>
+                            @else
+                                <li><a data-toggle="modal" data-target="#myModal"><i class="fa fa-heart"></i></a></li>
+                            @endif
                             <li><a href="#"><i class="fa fa-retweet"></i></a></li>
-                            <li><a href="#"><i class="fa fa-shopping-cart"></i></a></li>
+                            <li><a href="/add-to-cart/<?=$rel->id?>"><i class="fa fa-shopping-cart"></i></a></li>
                         </ul>
                     </div>
                     <div class="product__item__text">
                         <h6><a href="/product/<?=$rel->id?>">{{ $rel->name }}</a></h6>
-                        <h5>{{ $rel->price }} ₫</h5>
+                        @if($rel->discount)
+                            <?php
+                                $discount_price = $rel->price - ($rel->price * ($rel->discount/100));
+                            ?>
+                                <h5 class="product__item__price">{{ number_format($discount_price,3,".",".") }} ₫<span class="pl-2" style="text-decoration: line-through;color: #b2b2b2;font-weight: normal;">{{ number_format($rel->price,3,".",".") }} ₫</span></h5>
+                        @else
+                            <h5>{{ number_format($rel->price,3,".",".") }} ₫</h5>
+                        @endif
+
                     </div>
                 </div>
             </div>

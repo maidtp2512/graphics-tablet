@@ -188,7 +188,7 @@
     padding:0 15px;
 }
 
-.bio-row p span {
+.bio-row p span:first-child {
     width: 100px;
     display: inline-block;
 }
@@ -441,4 +441,22 @@ ul.summary-list > li:last-child  {
 .form-update-account .update-account-item .input-group-text{
     background-color: #FAEBD7;
     color: #E53935;
+}
+.toast {
+    width: 200px;
+    position: absolute;
+    top: 50px;
+    z-index: 999;
+    right: 50px;
+    -webkit-animation: fadeinout 5s linear forwards;
+    animation: fadeinout 5s linear forwards;
+}
+@-webkit-keyframes fadeinout {
+    0%,100% { opacity: 0; }
+    50% { opacity: 1; }
+}
+
+@keyframes fadeinout {
+    0%,100% { opacity: 0; }
+    50% { opacity: 1; }
 }
