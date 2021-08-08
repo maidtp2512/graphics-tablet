@@ -77,6 +77,7 @@ class CartController extends Controller
             if($item->id_product == $id){
                 return redirect()->back()->with('status',"Sản phẩm đã có trong wishlist của bạn!");
             }else{
+                session()->put('countW', session('countW') + 1);
                 Wishlist::create(array('id_product'=>$id, 'id_user'=>Auth::user()->id));
                 return redirect()->back()->with('status',"Thêm sản phẩm vào wishlist thành công!");
             }
@@ -96,6 +97,7 @@ class CartController extends Controller
         ]);
     }
     public function wishlistRemove($id){
+        session()->put('countW', session('countW') - 1);
         $wishlist = new Wishlist();
         $wishlist->withTrashed()->where('id', '=', $id)->forceDelete();
         return redirect()->back()->with('status',"Xóa sản phẩm trong wishlist thành công!");

@@ -5,7 +5,9 @@ namespace App\Http\Controllers;
 use App\Models\Blog;
 use App\Models\Category;
 use App\Models\Product;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -26,6 +28,12 @@ class HomeController extends Controller
      */
     public function index()
     {
+        $countW = session()->get('countW', 0);
+        if(!empty(Auth::user()->id)){
+            $countWishlist = 0;
+            $countWishlist = Wishlist::where('id_user', '=', Auth::user()->id)->count();
+            session()->put('countW', $countWishlist);
+        }
         $products = new Product();
         $product_outstanding = $products::where('outstanding', '1')->take(8)->get();
         $product_discount = $products::where('discount', '>', 0)->take(8)->get();

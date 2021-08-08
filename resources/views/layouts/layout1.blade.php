@@ -305,7 +305,11 @@
                 <div class="header__cart">
                     <ul style="margin: 0;">
                         @if(Auth::user())
-                        <li><a href="/wishlist"><i class="fa fa-heart"></i> <span class="count-cart">0</span></a></li>
+                        <li><a href="/wishlist"><i class="fa fa-heart"></i>
+                                <span class="count-cart">
+                                    {{ session('countW') }}
+                                </span>
+                            </a></li>
                         @else
                             <li><a data-toggle="modal" data-target="#myModal"><i class="fa fa-heart"></i> <span class="count-cart">0</span></a></li>
                         @endif
