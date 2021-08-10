@@ -460,3 +460,25 @@ ul.summary-list > li:last-child  {
     0%,100% { opacity: 0; }
     50% { opacity: 1; }
 }
+.tr-border-bottom:last-child{
+    border-top: 1px solid #eee;
+}
+.a-forms{
+    text-align: center;
+    margin-top: 10px;
+}
+.a-forms a span{
+    text-decoration: underline;
+}
+.a-forms a:hover span{
+    color: #E12503;
+}
+#accordion .card-header{
+    background-color: #E53935;
+}
+#accordion .card-header .btn.focus, #accordion .card-header .btn:focus,
+#accordion2  .btn.focus, #accordion2 .btn:focus,
+#accordion3  .btn.focus, #accordion3 .btn:focus{
+    outline: 0;
+    box-shadow: none;
+}

@@ -38,30 +38,34 @@
                             </tr>
                             </thead>
                             <tbody>
-                            @php $total = 0 @endphp
-                            @if(session('cart'))
-                                @foreach(session('cart') as $id => $details)
-                                    @php $total += $details['price'] * $details['quantity'] @endphp
-                                    <tr data-id="{{ $id }}" data-ajax="false">
-                                        <td data-th="Product">
-                                            <div class="row">
-                                                <div class="col-sm-3 hidden-xs">
-                                                    <img src="{{URL::asset('/upload/products/'.$details['image'])}}" height="100" class="img-responsive"/>
-                                                </div>
+                                @php $total = 0 @endphp
+                                @if(session('cart'))
+                                    @foreach(session('cart') as $id => $details)
+                                        @php $total += $details['price'] * $details['quantity'] @endphp
+                                        <tr data-id="{{ $id }}" data-ajax="false">
+                                            <td data-th="Product">
+                                                <div class="row">
+                                                    <div class="col-sm-3 hidden-xs">
+                                                        <img src="{{URL::asset('/upload/products/'.$details['image'])}}" height="100" class="img-responsive"/>
+                                                    </div>
                                                     <h4 class="nomargin" style="line-height: 100px;">{{ $details['name'] }}</h4>
-                                            </div>
-                                        </td>
-                                        <td data-th="Price">{{ number_format($details['price'],3,".",".") }} ₫</td>
-                                        <td data-th="Quantity">
-                                            <input type="number" min="1" value="{{ $details['quantity'] }}" class="form-control quantity update-cart" style="width: 60px;margin: 0 auto;"/>
-                                        </td>
-                                        <td data-th="Subtotal" class="text-center">{{ number_format($details['price'] * $details['quantity'],3,".",".") }} ₫</td>
-                                        <td class="actions" data-th="">
-                                            <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-close"></i></button>
-                                        </td>
+                                                </div>
+                                            </td>
+                                            <td data-th="Price">{{ number_format($details['price'],3,".",".") }} ₫</td>
+                                            <td data-th="Quantity">
+                                                <input type="number" min="1" value="{{ $details['quantity'] }}" class="form-control quantity update-cart" style="width: 60px;margin: 0 auto;"/>
+                                            </td>
+                                            <td data-th="Subtotal" class="text-center">{{ number_format($details['price'] * $details['quantity'],3,".",".") }} ₫</td>
+                                            <td class="actions" data-th="">
+                                                <button class="btn btn-danger btn-sm remove-from-cart"><i class="fa fa-close"></i></button>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                @else
+                                    <tr>
+                                        <td colspan="6"><p>Chưa có sản phẩm trong giỏ hàng!</p></td>
                                     </tr>
-                            @endforeach
-                            @endif
+                                @endif
                             </tbody>
                         </table>
                     </div>

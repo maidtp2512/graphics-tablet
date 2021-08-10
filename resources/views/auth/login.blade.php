@@ -59,6 +59,8 @@
                                     Bạn chưa có tài khoản? <span>{{ __('Đăng ký ở đây?') }}</span>
                                 </a>
                             </div>
+
+{{--                            <div class="fb-login-button" data-width="" data-size="large" data-button-type="login_with" data-layout="default" data-auto-logout-link="false" data-use-continue-as="false"></div>--}}
                         </div>
                     </form>
                 </div>

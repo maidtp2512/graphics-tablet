@@ -95,6 +95,10 @@ $first_part = $components[1];
 
 <body>
 <!-- Page Preloder -->
+<div id="fb-root"></div>
+<script async defer crossorigin="anonymous"
+        src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v11.0&appId=211528757611207&autoLogAppEvents=1"
+        nonce="9PARCdW2"></script>
 <div id="preloder">
     <div class="loader"></div>
 </div>
@@ -345,6 +349,10 @@ $first_part = $components[1];
                                             <div class="view-cart">
                                                 <a href="/cart">Xem giỏ hàng</a>
                                             </div>
+                                        @else
+                                            <div class="col-lg-12 col-sm-12 col-12" >
+                                                <p class="pt-2 text-success font-weight-bold">Chưa có sản phẩm trong giỏ hàng!</p>
+                                            </div>
                                         @endif
                                     </div>
                                 </ul>
@@ -372,9 +380,11 @@ $first_part = $components[1];
                         <span>Danh mục sản phẩm</span>
                     </div>
                     <ul>
-                        @foreach ($categories as $cat)
-                        <li><a href="#">{{$cat->name}}</a></li>
-                        @endforeach
+                        @if(session('Cat'))
+                            @foreach (session('Cat') as $key=>$cat)
+                                <li><a href="/<?=$cat['id']?>">{{$cat['name']}}</a></li>
+                            @endforeach
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -383,11 +393,11 @@ $first_part = $components[1];
                     <div class="hero__search__form">
                         <form action="#">
                             <div class="hero__search__categories">
-                                Danh mục sản phẩm
+                                Tất cả
                                 <i class="fa fa-angle-down angle-down-special"></i>
                             </div>
                             <input type="text" placeholder="Bạn cần tìm gì?">
-                            <button type="submit" class="site-btn">SEARCH</button>
+                            <button type="submit" class="site-btn">TÌM KIẾM</button>
                         </form>
                     </div>
                     <div class="hero__search__phone">
@@ -545,5 +555,12 @@ $first_part = $components[1];
 
 
 </body>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.12&appId=211528757611207&autoLogAppEvents=1';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
 </html>

@@ -93,6 +93,8 @@
 </head>
 
 <body>
+
+
 <!-- Page Preloder -->
 <div id="preloder">
     <div class="loader"></div>
@@ -325,7 +327,6 @@
                                 <span class="count-cart">{{$count }}</span>
                                 <ul style="width: 280px;left: -100px;margin: 0;background-color: antiquewhite;" class="p-0">
                                     <div class="row total-header-sectionn m-0">
-
                                         @if(session('cart'))
                                             @foreach(session('cart') as $id => $details)
                                                 <div class="cart-detail d-flex m-2 pb-2" style="border-bottom: 1px solid #E53935;">
@@ -341,10 +342,13 @@
                                             @endforeach
                                             <div class="col-lg-12 col-sm-12 col-12" >
                                                 <p>Tổng tiền: <span class="text-danger font-weight-bold">{{ number_format($total,3,".",".") }} ₫</span></p>
-
                                             </div>
                                             <div class="view-cart">
                                                 <a href="/cart">Xem giỏ hàng</a>
+                                            </div>
+                                        @else
+                                            <div class="col-lg-12 col-sm-12 col-12" >
+                                                <p class="pt-2 text-success font-weight-bold">Chưa có sản phẩm trong giỏ hàng!</p>
                                             </div>
                                         @endif
                                     </div>
@@ -374,9 +378,11 @@
                         <i class="fa fa-angle-down angle-down-special"></i>
                     </div>
                     <ul>
-                        @foreach ($categories as $cat)
-                            <li><a href="#">{{$cat->name}}</a></li>
-                        @endforeach
+                        @if(session('Cat'))
+                            @foreach (session('Cat') as $key=>$cat)
+                                <li><a href="/<?=$cat['id']?>">{{$cat['name']}}</a></li>
+                            @endforeach
+                        @endif
                     </ul>
                 </div>
             </div>
@@ -508,5 +514,13 @@
 </script>
 
 </body>
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+        var js, fjs = d.getElementsByTagName(s)[0];
+        if (d.getElementById(id)) return;
+        js = d.createElement(s); js.id = id;
+        js.src = 'https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v2.12&appId=211528757611207&autoLogAppEvents=1';
+        fjs.parentNode.insertBefore(js, fjs);
+    }(document, 'script', 'facebook-jssdk'));</script>
 
 </html>

@@ -29,11 +29,13 @@ Route::post('/update-cart', 'App\Http\Controllers\Client\CartController@update')
 Route::delete('/remove-from-cart', 'App\Http\Controllers\Client\CartController@remove');
 Route::get('/checkout', 'App\Http\Controllers\Client\CartController@checkout');
 Route::get('/contact', 'App\Http\Controllers\Client\ContactController@index');
-Route::post('/payment', 'App\Http\Controllers\Client\CartController@create');
+Route::post('/order', 'App\Http\Controllers\Client\CartController@payment');
+Route::get('/return', 'App\Http\Controllers\Client\CartController@return');
 Route::get('/user/profile/{id}', 'App\Http\Controllers\Client\AccountController@index');
 Route::get('/user/profile/edit/{id}', 'App\Http\Controllers\Client\AccountController@edit');
 Route::get('/user/profile/change-pass/{id}', 'App\Http\Controllers\Client\AccountController@change');
 Route::post('/user/profile/update-pass/{id}', 'App\Http\Controllers\Client\AccountController@changePass');
+
 
 Route::group(['middleware' => ['admin']], function () {
     Route::get('/wishlist', 'App\Http\Controllers\Client\CartController@wishlist');
@@ -130,3 +132,7 @@ Route::group(['middleware' => ['admin']], function () {
     Route::post('/admin/products/delete', 'App\Http\Controllers\Admin\ProductsController@delete');
 });
 
+// ROUTE ADMIN BILLS
+Route::group(['middleware' => ['admin']], function () {
+    Route::get('/admin/bills', 'App\Http\Controllers\Admin\BillsController@index');
+});

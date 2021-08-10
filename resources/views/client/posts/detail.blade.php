@@ -2,7 +2,9 @@
 @section('title', 'Graphics Tablet - Home')
 
 @section('client')
-
+<?php
+    $link = 'http://'.$_SERVER['HTTP_HOST'].$_SERVER['REQUEST_URI'];
+?>
 <!-- Blog Details Hero Begin -->
 <section class="blog-details-hero set-bg" data-setbg="{{URL::asset('img/breadcrumb.jpg')}}">
     <div class="container">
@@ -82,77 +84,13 @@
 {{--                            </div>--}}
 {{--                        </div>--}}
                         <div class="col-lg-12">
-{{--                            <div class="blog__details__widget">--}}
-{{--                                <ul>--}}
-{{--                                    <li><span>Categories:</span> Food</li>--}}
-{{--                                    <li><span>Tags:</span> All, Trending, Cooking, Healthy Food, Life Style</li>--}}
-{{--                                </ul>--}}
-{{--                                <div class="blog__details__social">--}}
-{{--                                    <a href="#"><i class="fa fa-facebook"></i></a>--}}
-{{--                                    <a href="#"><i class="fa fa-twitter"></i></a>--}}
-{{--                                    <a href="#"><i class="fa fa-google-plus"></i></a>--}}
-{{--                                    <a href="#"><i class="fa fa-linkedin"></i></a>--}}
-{{--                                    <a href="#"><i class="fa fa-envelope"></i></a>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="node-news-full-facebook-like">--}}
-{{--                                <div class="node-news-full-facebook-like-container">--}}
-{{--                                    <div--}}
-{{--                                        class="node-news-full-facebook-like-container-inner">--}}
-{{--                                        <div id="fb-root"></div>--}}
-{{--                                        <div class="fb-like fb_iframe_widget"--}}
-{{--                                             data-href=""--}}
-{{--                                             data-layout="button_count"--}}
-{{--                                             data-action="like" data-size="small"--}}
-{{--                                             data-show-faces="true" data-share="true"--}}
-{{--                                             fb-xfbml-state="rendered"--}}
-{{--                                             fb-iframe-plugin-query="action=like&amp;app_id=&amp;container_width=870&amp;href=https%3A%2F%2Ftugia.vn%2Fnode%2F281&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;share=true&amp;show_faces=true&amp;size=small">--}}
-{{--                                                                    <span--}}
-{{--                                                                        style="vertical-align: bottom; width: 150px; height: 28px;"><iframe--}}
-{{--                                                                            name="f299410e1a43518"--}}
-{{--                                                                            width="1000px" height="1000px"--}}
-{{--                                                                            data-testid="fb:like Facebook Social Plugin"--}}
-{{--                                                                            title="fb:like Facebook Social Plugin"--}}
-{{--                                                                            frameborder="0"--}}
-{{--                                                                            allowtransparency="true"--}}
-{{--                                                                            allowfullscreen="true"--}}
-{{--                                                                            scrolling="no"--}}
-{{--                                                                            allow="encrypted-media"--}}
-{{--                                                                            src="https://www.facebook.com/v4.0/plugins/like.php?action=like&amp;app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df374c0413ed521%26domain%3Dtugia.vn%26origin%3Dhttps%253A%252F%252Ftugia.vn%252Ff10b0b09d60afec%26relation%3Dparent.parent&amp;container_width=870&amp;href=https%3A%2F%2Ftugia.vn%2Fnode%2F281&amp;layout=button_count&amp;locale=en_US&amp;sdk=joey&amp;share=true&amp;show_faces=true&amp;size=small"--}}
-{{--                                                                            style="border: none; visibility: visible; width: 150px; height: 28px;"--}}
-{{--                                                                            __idm_frm__="643" class=""></iframe></span>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
-{{--                            <div class="node-news-full-comment">--}}
-{{--                                <div class="node-news-full-comment-container">--}}
-{{--                                    <div class="node-news-full-comment-container-inner">--}}
-{{--                                        <div id="fb-root"></div>--}}
-{{--                                        <div--}}
-{{--                                            class="fb-comments uk-visible-large fb_iframe_widget fb_iframe_widget_fluid_desktop"--}}
-{{--                                            data-href=""--}}
-{{--                                            data-width="100%" data-numposts="1"--}}
-{{--                                            fb-xfbml-state="rendered"--}}
-{{--                                            fb-iframe-plugin-query="app_id=&amp;container_width=870&amp;height=100&amp;href=https%3A%2F%2Ftugia.vn%2Fnode%2F281&amp;locale=en_US&amp;numposts=1&amp;sdk=joey&amp;version=v4.0&amp;width="--}}
-{{--                                            style="width: 100%;"><span--}}
-{{--                                                style="vertical-align: bottom; width: 100%; height: 204px;"><iframe--}}
-{{--                                                    name="f363d6e065b36d8"--}}
-{{--                                                    width="1000px" height="100px"--}}
-{{--                                                    data-testid="fb:comments Facebook Social Plugin"--}}
-{{--                                                    title="fb:comments Facebook Social Plugin"--}}
-{{--                                                    frameborder="0"--}}
-{{--                                                    allowtransparency="true"--}}
-{{--                                                    allowfullscreen="true"--}}
-{{--                                                    scrolling="no"--}}
-{{--                                                    allow="encrypted-media"--}}
-{{--                                                    src="https://www.facebook.com/v4.0/plugins/comments.php?app_id=&amp;channel=https%3A%2F%2Fstaticxx.facebook.com%2Fx%2Fconnect%2Fxd_arbiter%2F%3Fversion%3D46%23cb%3Df1c84ff04b9c92%26domain%3Dtugia.vn%26origin%3Dhttps%253A%252F%252Ftugia.vn%252Ff10b0b09d60afec%26relation%3Dparent.parent&amp;container_width=870&amp;height=100&amp;href=https%3A%2F%2Ftugia.vn%2Fnode%2F281&amp;locale=en_US&amp;numposts=1&amp;sdk=joey&amp;version=v4.0&amp;width="--}}
-{{--                                                    style="border: none; visibility: visible; width: 100%; height: 204px;"--}}
-{{--                                                    __idm_frm__="644" class=""></iframe></span>--}}
-{{--                                        </div>--}}
-{{--                                    </div>--}}
-{{--                                </div>--}}
-{{--                            </div>--}}
+                            <div class="fb-like" data-href="<?=$link?>"
+                                 data-width="" data-layout="standard"
+                                 data-action="like" data-size="small"
+                                 data-share="true"></div>
+                            <div class="fb-comments"
+                                 data-href="<?=$link?>"
+                                 data-width="100%" data-numposts="50"></div>
                         </div>
                     </div>
                 </div>

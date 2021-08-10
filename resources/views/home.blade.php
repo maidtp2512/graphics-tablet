@@ -115,12 +115,12 @@
                 </div>
                 <div class="categories__slider owl-carousel">
                     @foreach($product_discount as $discount)
-                    <div class="col-lg-3 col-md-4 col-sm-6 mix oranges fresh-meat">
+                    <div class="col-lg-3 col-md-4 col-sm-6">
                         <div class="featured__item">
                             <div class="product__discount__item__pic set-bg"
                                  data-setbg="{{URL::asset('/upload/products/'.$discount->image)}}">
                                 <div class="product__discount__percent">-{{ $discount->discount }}%</div>
-                                <ul class="product__item__pic__hover">
+                                <ul class="featured__item__pic__hover">
                                     @if(Auth::user())
                                         <li><a href="/wishlist/<?=$discount->id?>"><i class="fa fa-heart"></i></a></li>
                                     @else

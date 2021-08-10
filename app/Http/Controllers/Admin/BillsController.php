@@ -3,12 +3,15 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Bill;
 use Illuminate\Http\Request;
 
 class BillsController extends Controller
 {
     public function index(){
-        return view('admin/bills/bills');
+        $blogs = new Bill();
+        $data = $blogs->all();
+        return view('admin/bills/bills', ['bills' => $data]);
     }
     public function add(){
         return view('admin/bills/add');

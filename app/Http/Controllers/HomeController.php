@@ -29,6 +29,17 @@ class HomeController extends Controller
     public function index()
     {
         $countW = session()->get('countW', 0);
+        $Cat = session()->get('Cat', []);
+        $categories = new Category();
+        $data = $categories->all(array('name', 'id'));
+
+        foreach ($data as $cat){
+            $Cat[$cat->id] = [
+                "id" => $cat->id,
+                "name" => $cat->name,
+            ];
+        }
+        session()->put('Cat', $Cat);
         if(!empty(Auth::user()->id)){
             $countWishlist = 0;
             $countWishlist = Wishlist::where('id_user', '=', Auth::user()->id)->count();
@@ -37,11 +48,8 @@ class HomeController extends Controller
         $products = new Product();
         $product_outstanding = $products::where('outstanding', '1')->take(8)->get();
         $product_discount = $products::where('discount', '>', 0)->take(8)->get();
-        $categories = new Category();
-        $data = $categories->all(array('name', 'id'));
         $blogs = Blog::orderBy('created_at', 'DESC')->take(3)->get();
         return view('home', [
-            'categories' => $data,
             'product_outstanding'=>$product_outstanding,
             'product_discount'=>$product_discount,
             'blogs'=>$blogs

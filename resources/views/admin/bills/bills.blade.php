@@ -30,265 +30,39 @@
                                         <th data-field="name" data-editable="true">Tên khách hàng</th>
                                         <th data-field="total" data-editable="true">Tổng tiền</th>
                                         <th data-field="date" data-editable="true">Ngày đặt hàng</th>
-                                        <th data-field="date" data-editable="true">Ngày thanh toán</th>
-                                        <th data-field="payment" data-editable="true">Phương thức thanh toán</th>
-                                        <th data-field="availability" data-editable="true">Trang thái</th>
+                                        <th data-field="count" data-editable="true">Số lượng sản phẩm</th>
+{{--                                        <th data-field="date" data-editable="true">Ngày thanh toán</th>--}}
+{{--                                        <th data-field="payment" data-editable="true">Phương thức thanh toán</th>--}}
+                                        <th data-field="availability" data-editable="true">Trang thái thanh toán</th>
+                                        <th data-field="availability" data-editable="true">Trang thái giao hàng</th>
                                         <th data-field="action"></th>
                                     </tr>
                                     </thead>
                                     <tbody>
+                                    @foreach ($bills as $bill)
                                     <tr>
                                         <td></td>
-                                        <td>1</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{$bill->id}}</td>
+                                        <td>{{$bill->name}}</td>
+                                        <td>{{ number_format($bill->total,3,".",".") }} đ</td>
+                                        <td>{{$bill->created_at}}</td>
+                                        <td>{{$bill->count}}</td>
+                                        <td>{{$bill->payment_status}}</td>
+                                        <td>{{$bill->delivery_status}}</td>
                                         <td>
-                                            <a href="/admin/bills/detail" class="pd-setting-ed">
-                                                <i class="fa fa-info-circle" aria-hidden="true"></i>
+                                            <a href="/admin/bills/detail" class="btn btn-primary">
+                                                <i class="fa fa-info-circle text-white" aria-hidden="true"></i>
                                             </a>
-                                            <a href="/admin/bills/edit" class="pd-setting-ed">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
+                                            <!-- Button trigger modal -->
+                                            <a href="/admin/bills/edit" class="btn btn-success">
+                                                <i class="fa fa-pencil-square-o text-white" aria-hidden="true"></i>
                                             </a>
-                                            <a href="" class="pd-setting-ed">
-                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
+                                            <a href="" class="btn btn btn-danger">
+                                                <i class="fa fa-trash-o text-white" aria-hidden="true"></i>
                                             </a>
                                         </td>
                                     </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>2</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="/admin/bills/detail" class="pd-setting-ed">
-                                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="/admin/bills/edit" class="pd-setting-ed">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="" class="pd-setting-ed">
-                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>3</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="/admin/bills/detail" class="pd-setting-ed">
-                                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="/admin/bills/edit" class="pd-setting-ed">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="" class="pd-setting-ed">
-                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>4</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="/admin/bills/detail" class="pd-setting-ed">
-                                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="/admin/bills/edit" class="pd-setting-ed">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="" class="pd-setting-ed">
-                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>5</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="/admin/bills/detail" class="pd-setting-ed">
-                                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="/admin/bills/edit" class="pd-setting-ed">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="" class="pd-setting-ed">
-                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>6</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="/admin/bills/detail" class="pd-setting-ed">
-                                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="/admin/bills/edit" class="pd-setting-ed">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="" class="pd-setting-ed">
-                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>7</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="/admin/bills/detail" class="pd-setting-ed">
-                                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="/admin/bills/edit" class="pd-setting-ed">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="" class="pd-setting-ed">
-                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>8</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="/admin/bills/detail" class="pd-setting-ed">
-                                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="/admin/bills/edit" class="pd-setting-ed">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="" class="pd-setting-ed">
-                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>9</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="/admin/bills/detail" class="pd-setting-ed">
-                                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="/admin/bills/edit" class="pd-setting-ed">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="" class="pd-setting-ed">
-                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>10</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="/admin/bills/detail" class="pd-setting-ed">
-                                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="/admin/bills/edit" class="pd-setting-ed">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="" class="pd-setting-ed">
-                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>11</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="/admin/bills/detail" class="pd-setting-ed">
-                                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="/admin/bills/edit" class="pd-setting-ed">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="" class="pd-setting-ed">
-                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td></td>
-                                        <td>12</td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
-                                        <td>
-                                            <a href="/admin/bills/detail" class="pd-setting-ed">
-                                                <i class="fa fa-info-circle" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="/admin/bills/edit" class="pd-setting-ed">
-                                                <i class="fa fa-pencil-square-o" aria-hidden="true"></i>
-                                            </a>
-                                            <a href="" class="pd-setting-ed">
-                                                <i class="fa fa-trash-o" aria-hidden="true"></i>
-                                            </a>
-                                        </td>
-                                    </tr>
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>

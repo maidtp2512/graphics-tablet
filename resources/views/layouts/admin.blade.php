@@ -185,15 +185,15 @@
                             </li>
                         </ul>
                     </li>
-                    <li class="active">
-                        <a title="Landing Page" href="/admin/orders" aria-expanded="false">
-                            <i class="fa fa-tasks icon-wrap" aria-hidden="true"></i>
-                            <span class="mini-click-non">Đơn hàng</span>
-                        </a>
-                    </li>
+{{--                    <li class="active">--}}
+{{--                        <a title="Landing Page" href="/admin/orders" aria-expanded="false">--}}
+{{--                            <i class="fa fa-tasks icon-wrap" aria-hidden="true"></i>--}}
+{{--                            <span class="mini-click-non">Đơn hàng</span>--}}
+{{--                        </a>--}}
+{{--                    </li>--}}
                     <li class="active">
                         <a title="Landing Page" href="/admin/bills" aria-expanded="false">
-                            <i class="fa fa-sticky-note icon-wrap" aria-hidden="true"></i>
+                            <i class="fa fa-tasks icon-wrap" aria-hidden="true"></i>
                             <span class="mini-click-non">Hóa đơn</span>
                         </a>
                     </li>
