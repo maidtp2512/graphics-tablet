@@ -6,5 +6,6 @@ Cơ sở dữ liệu:
 Ghi chú:
 - file asset để trong {{ assets('') }}
 
-Chạy web:
+Chạy bước chạy web:
+- npm install (cài đặt package)
 - php artisan serve
