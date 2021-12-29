@@ -21,6 +21,7 @@ Route::get('/home', 'App\Http\Controllers\HomeController@index');
 Route::get('/about', 'App\Http\Controllers\HomeController@about');
 Route::get('/collection', 'App\Http\Controllers\Client\ProductsController@index');
 Route::get('/product/{id}', 'App\Http\Controllers\Client\ProductsController@showItem');
+Route::get('/product-cat/{id}', 'App\Http\Controllers\Client\ProductsController@productCat');
 Route::get('/posts', 'App\Http\Controllers\Client\BlogsController@index');
 Route::get('/post/{id}', 'App\Http\Controllers\Client\BlogsController@showItem');
 Route::get('/cart', 'App\Http\Controllers\Client\CartController@index');
@@ -135,4 +136,7 @@ Route::group(['middleware' => ['admin']], function () {
 // ROUTE ADMIN BILLS
 Route::group(['middleware' => ['admin']], function () {
     Route::get('/admin/bills', 'App\Http\Controllers\Admin\BillsController@index');
+    Route::get('/admin/bills/edit/{id}', 'App\Http\Controllers\Admin\BillsController@edit');
+    Route::post('/admin/bills/update/{id}', 'App\Http\Controllers\Admin\BillsController@update');
+    Route::post('/admin/bills/delete', 'App\Http\Controllers\Admin\BillsController@delete');
 });

@@ -382,7 +382,7 @@ $first_part = $components[1];
                     <ul>
                         @if(session('Cat'))
                             @foreach (session('Cat') as $key=>$cat)
-                                <li><a href="/<?=$cat['id']?>">{{$cat['name']}}</a></li>
+                                <li><a href="/product-cat/<?=$cat['id']?>">{{$cat['name']}}</a></li>
                             @endforeach
                         @endif
                     </ul>

@@ -14,13 +14,6 @@
                         </div>
                         <div class="sparkline13-graph">
                             <div class="datatable-dashv1-list custom-datatable-overright">
-                                <div id="toolbar">
-                                    <select class="form-control">
-                                        <option value="">Xuất dữ liệu</option>
-                                        <option value="all">Xuất tất cả</option>
-                                        <option value="selected">Xuất theo tùy chọn</option>
-                                    </select>
-                                </div>
                                 <table id="table" data-toggle="table" data-pagination="true" data-search="true" data-show-columns="true" data-show-pagination-switch="true" data-show-refresh="true" data-key-events="true" data-show-toggle="true" data-resizable="true" data-cookie="true"
                                        data-cookie-id-table="saveId" data-show-export="true" data-click-to-select="true" data-toolbar="#toolbar">
                                     <thead>
@@ -54,12 +47,34 @@
                                                 <i class="fa fa-info-circle text-white" aria-hidden="true"></i>
                                             </a>
                                             <!-- Button trigger modal -->
-                                            <a href="/admin/bills/edit" class="btn btn-success">
+                                            <a href="/admin/bills/edit/<?=$bill->id?>" class="btn btn-success">
                                                 <i class="fa fa-pencil-square-o text-white" aria-hidden="true"></i>
                                             </a>
-                                            <a href="" class="btn btn btn-danger">
+                                            <a class="btn btn btn-danger" data-toggle="modal" data-target="#deleteProduct" onclick="setEventId(<?=$bill->id_order?>)">
                                                 <i class="fa fa-trash-o text-white" aria-hidden="true"></i>
                                             </a>
+                                            <div class="modal fade" id="deleteProduct" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+                                                <form class="modal-dialog " role="document" action="/admin/bills/delete" method="post">
+                                                    {{ csrf_field() }}
+                                                    <div class="modal-content">
+                                                        <div class="modal-body" style="border-bottom: 1px solid #e5e5e5;">
+                                                            <h4 style="color: red">Bạn có chắn chắn muốn xóa!</h4>
+                                                        </div>
+                                                        <div class="modal-footer row" style="border: none !important;">
+                                                            <div class="col-sm-6 text-left" >
+                                                                <label>
+                                                                    <input type="checkbox" value="1" name="destroy"> Xóa khỏi thùng rác
+                                                                    <input type="hidden" value="<?=$bill->id_order?>" name="id" id="id">
+                                                                </label>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Hủy</button>
+                                                                <button type="submit" class="btn btn-primary">Tiếp tục</button>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </form>
+                                            </div>
                                         </td>
                                     </tr>
                                     @endforeach

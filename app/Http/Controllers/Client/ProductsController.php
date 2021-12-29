@@ -36,4 +36,19 @@ class ProductsController extends Controller
             'related'=>$related
         ]);
     }
+    public function productCat($id){
+        $categories = new Category();
+        $cate = $categories->all(array('name', 'id'));
+        $name_cat = Category::find($id);
+        $products = new Product();
+        $product_cat = $products::where('catalog_id', '=', $id)->paginate(10);
+        $new_products = Product::orderBy('created_at', 'DESC')->take(6)->get();
+//        $product_cat = $productc->paginate(12);
+        return view('client/collection/product_cat',[
+            'nameCat'=>$name_cat->name,
+            'categories' => $cate,
+            'productCat'=>$product_cat,
+            'new_products'=>$new_products
+        ]);
+    }
 }

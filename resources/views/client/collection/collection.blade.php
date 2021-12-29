@@ -58,7 +58,7 @@
                         <h4>Loại sản phẩm</h4>
                         <ul>
                             @foreach($categories as $cate)
-                            <li><a href="#">{{ $cate->name }}</a></li>
+                            <li><a href="/product-cat/<?=$cate->id?>">{{ $cate->name }}</a></li>
                             @endforeach
                         </ul>
                     </div>
